@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: service-ports
+spec:
+  selector:
+    app: service
+  ports:
+    - protocol: TCP
+      port: 443          
+      targetPort: 443    
+    - protocol: TCP
+      port: 8080         
+      targetPort: 8080   
+  type: LoadBalancer     # for external access

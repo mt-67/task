@@ -30,3 +30,17 @@ def start_tcp_server(port):
         user_socket.sendall(b"Hello from TCP server")
 
         user_socket.close()
+
+
+'''running TCP servers in separate threads'''
+def start_tcp_servers():
+    tcp_ports = [8080, 9000]
+
+    for port in tcp_ports:
+        threading.Thread(target=start_tcp_server, args=(port,), daemon=True).start()
+
+
+if name == 'main':
+    start_tcp_servers()  #start TCP-servers
+
+    app.run(host='0.0.0.0', port=443, ssl_context=('cert.pem', 'key.pem'))

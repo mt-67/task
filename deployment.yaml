@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: service-deployment
+  labels:
+    app: service
+spec:
+  replicas: 2  #start 2 pods for loadbalance
+  selector:
+    matchLabels:
+      app: service
+  template:
+    metadata:
+      labels:
+        app: service
+    spec:
+      containers:
+      - name: service-container
+        image: storage1.azurecr.io/protocol_service:latest
+        ports:
+        - containerPort: 443    
+        - containerPort: 8080  
+        env:
+        - name: ENVIRONMENT
+          value: "production"

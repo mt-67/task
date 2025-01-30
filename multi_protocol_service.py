@@ -13,7 +13,7 @@ def hello_world():
 
 '''starts the HTTPS server'''
 def start_https_server():
-    context = ('./cert.pem', './key.pem')  
+    context = ('app/cert.pem', 'app/key.pem')  
     app.run(host='0.0.0.0', port=443, ssl_context=context)
 
 

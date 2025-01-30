@@ -1,46 +1,52 @@
 from flask import Flask
 import socket
 import threading
+from OpenSSL import SSL
 
 
-app = Flask(__name__)
+app = Flask(__name__) #creates a Flask application for HTTPS
 
-
-# HTTP Endpoint
 @app.route('/')
-def home():
-    return "Hello, service!"
+def hello_world():
+    return 'Hello, My World!'
 
 
-'''creates and manages a TCP server'''
-def start_tcp_server(port):
+'''starts the HTTPS server'''
+def start_https_server():
+    context = ('cert.pem', 'key.pem')  
+    app.run(host='0.0.0.0', port=443, ssl_context=context)
+
+
+'''starts the TCP server'''
+def start_tcp_server(host, port):
     server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM) #create socket
 
-    server_socket.bind(('0.0.0.0', port))
+    server_socket.bind((host, port))
     server_socket.listen(10) #max queue
 
-    print(f"TCP server {port}")
-
+    print(f"TCP Server listening on {host}:{port}")
+    
 
     '''awaiting connection from the user'''
     while True:
-        user_socket, user_address = server_socket.accept() #accepts connection, returns socket and address
+        user_socket, addr = server_socket.accept() #accepts connection, returns socket and address
 
-        print(f"Connection from {user_address}") #connection information
-        user_socket.sendall(b"Hello from TCP server")
+
+        print(f"TCP connection from {addr}") #connection information
+        user_socket.send(b"Hello, TCP user") # answer
 
         user_socket.close()
 
 
-'''running TCP servers in separate threads'''
-def start_tcp_servers():
-    tcp_ports = [8080, 9000]
+'''runs TCP servers in separate streams'''
+def start_servers():
+    ports = [8080] 
 
-    for port in tcp_ports:
-        threading.Thread(target=start_tcp_server, args=(port,), daemon=True).start()
+    for port in ports:
+        threading.Thread(target=start_tcp_server, args=('0.0.0.0', port), daemon=True).start()
 
 
-if __name__ == 'main':
-    start_tcp_servers()  #start TCP-servers
-
-    app.run(host='0.0.0.0', port=443, ssl_context=('cert.pem', 'key.pem'))
+if __name__ == "main":
+    start_servers() # runs TCP servers
+    
+    start_https_server() # Runs the Flask server with HTTPS

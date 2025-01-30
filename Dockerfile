@@ -4,12 +4,13 @@ FROM python:3.13-slim
 RUN pip3 install Flask pyOpenSSL
 
 
-COPY multi_protocol_service.py /main/main.py
-COPY cert.pem /main/cert.pem
-COPY key.pem /main/key.pem
+COPY multi_protocol_service.py /app/multi_protocol_service.py
+
+COPY ./ssl/cert.pem /app/cert.pem
+COPY ./ssl/key.pem /app/key.pem
 
 
-WORKDIR /main
+WORKDIR /app
 
 
 EXPOSE 443

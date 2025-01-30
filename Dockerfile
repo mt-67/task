@@ -6,12 +6,12 @@ RUN pip3 install socket
 RUN pip3 install threading
 
 
-COPY multi_protocol_service.py /app/app.py
-COPY cert.pem /app/cert.pem
-COPY key.pem /app/key.pem
+COPY multi_protocol_service.py /main/main.py
+COPY cert.pem /main/cert.pem
+COPY key.pem /main/key.pem
 
 
-WORKDIR /app
+WORKDIR /main
 
 
 EXPOSE 443

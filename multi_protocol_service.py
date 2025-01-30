@@ -40,7 +40,7 @@ def start_tcp_servers():
         threading.Thread(target=start_tcp_server, args=(port,), daemon=True).start()
 
 
-if name == 'main':
+if __name__ == 'main':
     start_tcp_servers()  #start TCP-servers
 
     app.run(host='0.0.0.0', port=443, ssl_context=('cert.pem', 'key.pem'))

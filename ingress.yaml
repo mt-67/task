@@ -3,20 +3,21 @@ kind: Ingress
 metadata:
   name: service-ingress
   annotations:
-    nginx.ingress.kubernetes.io/ssl-redirect: "true"
+    kubernetes.io/ingress.class: "nginx"
+    cert-manager.io/cluster-issuer: "letsencrypt-staging"  #for cert manager
 spec:
-  tls:
-  - hosts:
-    - service.com  # domain
-    secretName: tls-secret  # secret with an SSL certificate
   rules:
-  - host: example.com
+  - host: service.com
     http:
       paths:
       - path: /
         pathType: Prefix
         backend:
           service:
-            name: service-svc
+            name: service
             port:
               number: 443
+  tls:
+  - hosts:
+    - service.com
+    secretName: service-tls

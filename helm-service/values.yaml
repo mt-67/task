@@ -1,0 +1,36 @@
+replicaCount: 2
+
+image:
+  repository: containerservice.azurecr.io/multi-protocol-service
+  tag: latest
+  pullPolicy: IfNotPresent
+
+autoscaling:
+  enabled: false  
+  minReplicas: 1  
+  maxReplicas: 10  
+  targetCPUUtilizationPercentage: 80  
+
+service:
+  type: LoadBalancer
+  ports:
+    http: 80
+    https: 443
+    tcp: 8080
+
+serviceAccount:
+  create: true
+
+ingress:
+  enabled: true
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+  hosts:
+    - host: protocolservice.com
+      paths:
+        - path: /
+          pathType: Prefix
+  tls:
+    - hosts:
+        - protocolservice.com
+      secretName: tls-secret

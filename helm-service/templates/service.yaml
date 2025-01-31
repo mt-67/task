@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Release.Name }}
+spec:
+  type: {{ .Values.service.type }}
+  selector:
+    app: {{ .Chart.Name }}
+  ports:
+    - name: http
+      port: {{ .Values.service.ports.http }}
+      targetPort: {{ .Values.service.ports.http }}
+    - name: https
+      port: {{ .Values.service.ports.https }}
+      targetPort: {{ .Values.service.ports.https }}
+    - name: tcp
+      port: {{ .Values.service.ports.tcp }}
+      targetPort: {{ .Values.service.ports.tcp }}

@@ -8,13 +8,18 @@ app = Flask(__name__) #creates a Flask application for HTTPS
 
 @app.route('/')
 def hello_world():
-    return 'Hello, My World!'
+    return 'Hello, Noda!'
 
 
 '''starts the HTTPS server'''
 def start_https_server():
-    context = ('app/cert.pem', 'app/key.pem')  
+    context = ('cert.pem', 'key.pem')  
     app.run(host='0.0.0.0', port=443, ssl_context=context)
+
+
+'''starts the HTTP server'''
+def start_http_server():
+    app.run(host='0.0.0.0', port=80)
 
 
 '''starts the TCP server'''
@@ -46,7 +51,9 @@ def start_servers():
         threading.Thread(target=start_tcp_server, args=('0.0.0.0', port), daemon=True).start()
 
 
-if __name__ == "main":
-    start_servers() # runs TCP servers
-    
-    start_https_server() # Runs the Flask server with HTTPS
+
+start_servers() # runs TCP servers
+
+threading.Thread(target=start_http_server, daemon=True).start() # Running servers in separate threads
+
+start_https_server() # Runs the Flask server with HTTPS

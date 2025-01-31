@@ -6,13 +6,16 @@ spec:
   selector:
     app: service
   ports:
-    - protocol: TCP
+    - name: https-port  
+      protocol: TCP
       port: 443
       targetPort: 443
-    - protocol: TCP
+    - name: custom-port   
+      protocol: TCP
       port: 8080
       targetPort: 8080
-    - protocol: TCP
+    - name: http-port
+      protocol: TCP
       port: 80
       targetPort: 80
-  type: LoadBalancer # for external access
+  type: LoadBalancer 

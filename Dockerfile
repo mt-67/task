@@ -1,20 +1,26 @@
 FROM python:3.13-slim
 
 
-RUN pip3 install Flask pyOpenSSL
-
-
-COPY multi_protocol_service.py /app/multi_protocol_service.py
-
-COPY ./ssl/cert.pem /app/cert.pem
-COPY ./ssl/key.pem /app/key.pem
+ENV APP_PORT=80
+ENV APP_PORT=443     
+ENV TCP_PORT1=8080    
 
 
 WORKDIR /app
 
 
-EXPOSE 443
-EXPOSE 8080
+COPY multi_protocol_service.py /app/multi_protocol_service.py
 
 
-CMD ["python", "multi_protocol_service.py"]
+COPY cert.pem /app/cert.pem
+COPY key.pem /app/key.pem
+
+
+RUN pip install Flask pyOpenSSL
+
+
+CMD ["python", "/app/multi_protocol_service.py"]
+
+
+
+

@@ -6,7 +6,7 @@ metadata:
     nginx.ingress.kubernetes.io/ssl-redirect: "true"
 spec:
   rules:
-  - host: protocolservice.com
+  - host: protocolservices.com
     http:
       paths:
       - path: /
@@ -18,5 +18,5 @@ spec:
               number: 443
   tls:
   - hosts:
-    - protocolservice.com
-    secretName: tls-secret
+    - protocolservices.com
+    secretName: tls-secret 

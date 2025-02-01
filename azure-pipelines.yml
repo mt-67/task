@@ -42,7 +42,7 @@ stages:
 
         
         - script: |
-            if [[ $(helm status my-release | grep 'STATUS' | awk '{print $2}') != "deployed" ]]; then
+            if [[ $(helm status elease | grep 'STATUS' | awk '{print $2}') != "deployed" ]]; then
               echo "Helm deployment failed, rolling back..."
               helm rollback release  
             else

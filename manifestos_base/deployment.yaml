@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: multi-protocol-service
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: multi-protocol-service  
+  template:
+    metadata:
+      labels:
+        app: multi-protocol-service  
+    spec:
+      containers:
+        - name: multi-protocol-service
+          image: containerservice.azurecr.io/multi-protocol-service:latest
+          ports:
+            - containerPort: 80
+            - containerPort: 443
+            - containerPort: 8080
+      imagePullSecrets:
+        - name: my-secret

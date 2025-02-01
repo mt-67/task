@@ -6,6 +6,11 @@ ENV APP_PORT=443
 ENV TCP_PORT1=8080    
 
 
+EXPOSE 80
+EXPOSE 443
+EXPOSE 8080
+
+
 WORKDIR /app
 
 
@@ -16,11 +21,7 @@ COPY cert.pem /app/cert.pem
 COPY key.pem /app/key.pem
 
 
-RUN pip install Flask pyOpenSSL
+RUN pip3 install Flask pyOpenSSL
 
 
 CMD ["python", "/app/multi_protocol_service.py"]
-
-
-
-

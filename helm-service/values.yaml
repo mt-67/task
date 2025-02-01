@@ -1,4 +1,4 @@
-rreplicaCount: 2
+replicaCount: 2
 
 image:
   repository: containerservice.azurecr.io/multi-protocol-service

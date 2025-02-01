@@ -8,7 +8,7 @@ metadata:
     {{ $key }}: "{{ $value }}"
     {{- end }}
 spec:
-  ingressClassName: {{ .Values.ingress.ingressClassName | default "nginx" }}  # Новый параметр
+  ingressClassName: {{ .Values.ingress.ingressClassName | default "nginx" }} 
   rules:
     {{- range .Values.ingress.hosts }}
     - host: {{ .host }}

@@ -16,7 +16,7 @@ stages:
         
        
         - task: Kubernetes@1
-          name: 'k8s-service'
+          name: 'KubeLogin'
           displayName: "Login to AKS"
           inputs:
             connectionType: 'Kubernetes Service Connection'

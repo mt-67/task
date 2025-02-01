@@ -4,13 +4,13 @@ metadata:
   name: service-svc
 spec:
   selector:
-    app: multi-protocol-service 
+    app: service
   ports:
-    - name: https-port
+    - name: https-port  
       protocol: TCP
       port: 443
       targetPort: 443
-    - name: custom-port
+    - name: custom-port   
       protocol: TCP
       port: 8080
       targetPort: 8080
@@ -18,4 +18,4 @@ spec:
       protocol: TCP
       port: 80
       targetPort: 80
-  type: LoadBalancer
+  type: LoadBalancer 

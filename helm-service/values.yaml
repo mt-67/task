@@ -23,7 +23,8 @@ serviceAccount:
 
 ingress:
   enabled: true
-  ingressClassName: nginx
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
   hosts:
     - host: protocolservices.com
       paths:

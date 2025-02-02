@@ -77,6 +77,7 @@ EXPOSE 80
 EXPOSE 443
 EXPOSE 8080
 ```
+
 and Launching the Flask application
 
 ```Bash

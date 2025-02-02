@@ -3,6 +3,20 @@
 The project is the development and automation of the deployment of a service that listens to HTTP, HTTPS, and custom TCP ports. We have created a Python application using Flask for HTTP/HTTPS and the socket standard library for TCP. The application is packaged in a Docker container, which allows it to be deployed to Kubernetes in Azure ACR. The process includes creating manifests for Kubernetes, configuring the Helm chart to simplify deployment, and integrating with Azure DevOps to automatically deploy and test services.
 
 
+# Links
+
+Flask application « multi-protocol-service.py » in Python-script that will listen to HTTP/HTTPS/TCP ports (80, 443, 8080) and outputs « Hello, Noda » on https://192.168.1.32:443 and 20.103.44.21 and http://192.168.1.32:80
+
+link to the pipeline with automatic port availability check
+https://dev.azure.com/matvey090/pipeline%20helm/_build?definitionId=2
+
+link to a pipeline with automatic verification of deployment, ports, and rollback, if necessary 
+https://dev.azure.com/matvey090/pipeline%20helm/_build ?definitionId=1
+
+link to a pipeline with automatic successful and unsuccessful roll-up
+https://dev.azure.com/matvey090/pipeline%20helm/_build ?definitionId=3
+
+
 # Purpose
 
 Develop and deploy a service that will listen to HTTP, HTTPS, and custom TCP ports using Python (Flask for HTTP/HTTPS and sockets for TCP). The service is packaged in a Docker container and deployed to Kybernetes using a Helm chart, providing automation through Azure DevOps for CI/CD pipelines. The project also implemented the deployment success check and rollback of the release in case of errors, which ensures stable operation of services in Kubernetes.
@@ -11,12 +25,13 @@ Develop and deploy a service that will listen to HTTP, HTTPS, and custom TCP por
 # Content
 
 - [Multi-Port Service Deployment with Kubernetes and Azure DevOps Pipeline](#Multi-Port_Service_Deployment_with_Kubernetes_and_Azure_DevOps_Pipeline)
+- [Links](#Links)
 - [Purpose](#Purpose)
 - [Content](#Content)
 - [Technologies](#Technologies)
 - [Instruction](#Instruction)
 - [Conducted Performance Tests](#Conducted-Performance-Tests)
-- [The project team](#The_project_team)
+- [The project Team](#The_project_team)
 
 
 # Technologies
@@ -206,6 +221,6 @@ All the necessary python scripts are successfully running and working. All the N
 All Pipelines are successfully functioning and fulfilling their task. All the necessary YAML files have been written, implemented, and are functioning successfully.
 
 
-# The project team
+# The project Team
 
 - Matsvei Asipenka

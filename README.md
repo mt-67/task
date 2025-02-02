@@ -131,6 +131,7 @@ I have applied these manifests to the cluster
 ```Bash
 kubectl apply -f <name-Manifestos>
 ```
+
 and checked the status of the resources
 
 ```Bash

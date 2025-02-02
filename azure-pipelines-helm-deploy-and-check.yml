@@ -34,8 +34,22 @@ stages:
             chartPath: 'helm-service' 
             releaseName: 'release' 
             install: true  
+            
 
+        - task: UsePythonVersion@0
+          inputs:
+            versionSpec: '3.x'
+            addToPath: true
+
+
+        - script: pip3 install requests
+          displayName: 'install'
+
+
+        - script: python task/accessibility-rollback.py
+          displayName: 'check delpoy'   
         
+
         - script: |
             helm status release
           displayName: "Check Helm Release Status"

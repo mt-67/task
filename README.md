@@ -11,10 +11,10 @@ link to the pipeline with automatic port availability check
 https://dev.azure.com/matvey090/pipeline%20helm/_build?definitionId=2
 
 link to a pipeline with automatic verification of deployment, ports, and rollback, if necessary 
-https://dev.azure.com/matvey090/pipeline%20helm/_build ?definitionId=1
+https://dev.azure.com/matvey090/pipeline%20helm/_build?definitionId=1
 
 link to a pipeline with automatic successful and unsuccessful roll-up
-https://dev.azure.com/matvey090/pipeline%20helm/_build ?definitionId=3
+https://dev.azure.com/matvey090/pipeline%20helm/_build?definitionId=3
 
 
 # Purpose

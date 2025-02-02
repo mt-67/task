@@ -1,0 +1,65 @@
+trigger:
+  branches:
+    include:
+      - main  
+
+pool:
+  vmImage: 'ubuntu-latest' 
+
+
+stages:
+  - stage: Deploy
+    jobs:
+      - job: DeployHelm
+        displayName: "Deploy Helm Chart to AKS"
+        steps:
+        
+       
+        - task: Kubernetes@1
+          name: 'KubeLogin'
+          displayName: "Login to AKS"
+          inputs:
+            connectionType: 'Kubernetes Service Connection'
+            kubernetesServiceEndpoint: 'kuber-connection'
+
+        
+        - task: HelmDeploy@0
+          displayName: "Deploy Helm Chart"
+          inputs:
+            connectionType: 'Kubernetes Service Connection'
+            kubernetesServiceEndpoint: 'kuber-connection'
+            namespace: 'default'  
+            command: 'upgrade'  
+            chartType: 'FilePath'
+            chartPath: 'helm-service' 
+            releaseName: 'release' 
+            install: true  
+            
+
+        - task: UsePythonVersion@0
+          inputs:
+            versionSpec: '3.x'
+            addToPath: true
+
+
+        - script: pip3 install requests
+          displayName: 'install'
+
+
+        - script: python task/accessibility-rollback.py
+          displayName: 'check delpoy'   
+        
+
+        - script: |
+            helm status release
+          displayName: "Check Helm Release Status"
+
+        
+        - script: |
+            if [[ $(helm status elease | grep 'STATUS' | awk '{print $2}') != "deployed" ]]; then
+              echo "Helm deployment failed, rolling back..."
+              helm rollback release  
+            else
+              echo "Deployment successful!"
+            fi
+          displayName: "Rollback on Failure"

@@ -16,24 +16,13 @@ Develop and deploy a service that will listen to HTTP, HTTPS, and custom TCP por
 
 # Technologies
 
-– 
-– [Flask framework](#Flask_framework)
-– [Docker](#Docker)
-– [Kubernetes](#Kubernetes)
-– [Azure CR](#Azure_CR)
-– [Azure KS](#Azure_KS)
-– [Helm-chart](#Helm-chart)
-– [Azure DevOps](#Azure_DevOps)
-
 - [Python](#Python)
-- [Python](#Python)
-- [Elasticsearch](#Elasticsearch)
-- [Kibana](#Kibana)
-- [Jenkins](#Jenkins)
-- [Cassandra](#Cassandra)
-- [AWS Lambda](#AWS_Lambda)
-- [Groovy](#Groovy)
-- [Bash](#Bash)
-- [Ubuntu](#Ubuntu)
+- [Flask framework](#Flask_framework)
+- [Docker](#Docker)
+- [Kubernetes](#Kubernetes)
+- [Azure CR](#Azure_CR)
+- [Azure KS](#Azure_KS)
+- [Azure DevOps](#Azure_DevOps)
+- [Helm-chart](#Helm-chart)
 
 qwe

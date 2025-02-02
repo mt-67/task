@@ -21,9 +21,6 @@ steps:
     addToPath: true
   displayName: 'py install'
 
-- script: |
-    pip install -r task/requirements.txt
-  displayName: 'install'
 
 - script: |
     python task/only-check-ports.py

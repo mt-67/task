@@ -25,6 +25,15 @@ Develop and deploy a service that will listen to HTTP, HTTPS, and custom TCP por
 – [Helm-chart](#Helm-chart)
 – [Azure DevOps](#Azure_DevOps)
 
-
+- [PostgreSQL](#PostgreSQL)
+- [Python](#Python)
+- [Elasticsearch](#Elasticsearch)
+- [Kibana](#Kibana)
+- [Jenkins](#Jenkins)
+- [Cassandra](#Cassandra)
+- [AWS Lambda](#AWS_Lambda)
+- [Groovy](#Groovy)
+- [Bash](#Bash)
+- [Ubuntu](#Ubuntu)
 
 qwe

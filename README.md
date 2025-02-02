@@ -83,10 +83,21 @@ docker run -p 80:80 -p 443:443 -p 8080:8080 ports-service
 
 Using Azure CLI,log in to my account.
 
-Сreate a cluster « az aks create » , I chose the westeurope region by taking 3 nodes to distribute the load, and if one node falls, the other two will be able to share its load, and generate-ssh-keys,ssh keys are needed for node management and access to the Master node. 
+Сreate a cluster. I chose the westeurope region by taking 3 nodes to distribute the load, and if one node falls, the other two will be able to share its load, and generate-ssh-keys,ssh keys are needed for node management and access to the Master node. 
 
-To connect to the cluster, you need to get credentials for AKS and configure kubectl « az aks get-credentials »
+```Bash
+az aks create --resource-group <myResourceGroup> --name <myAKSCluster> --node-count 3 --enable-addons monitoring --generate-ssh-keys
+```
+
+To connect to the cluster, you need to get credentials for AKS and configure kubectl.
+
+```Bash
+az aks get-credentials --resource-group <resource-group-name> --name <aks-cluster-name>
+```
 
 I checked the connection using « kubectl get nodes » 
 
 I have set up policy and given myself an « Owner »  for full access to all actions.
+
+
+# Manifestos

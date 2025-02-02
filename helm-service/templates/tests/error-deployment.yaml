@@ -1,0 +1,35 @@
+replicaCount: 0  # 0 replicas
+
+image:
+  repository: containerservice.azurecr.io/multi-protocol-service
+  tag: non-existent-tag  # no exist
+  pullPolicy: Always
+
+autoscaling:
+  enabled: true  
+  minReplicas: 5  # minreplicas more maxreplicas 
+  maxReplicas: 2  # maxreplicas less minreplicas 
+  targetCPUUtilizationPercentage: 200  # no exist
+
+service:
+  type: LoadBalancer
+  ports:
+    http: 9999  # no exist
+    https: 9443  # no exist
+    tcp: 12345  # no exist
+
+serviceAccount:
+  create: false  # off service
+
+ingress:
+  enabled: true
+  ingressClassName: nginx
+  hosts:
+    - host: broken.protocolservices.com  # error domain
+      paths:
+        - path: /wrong-path  # no way
+          pathType: Prefix
+  tls:
+    - hosts:
+        - broken.protocolservices.com
+      secretName: non-existent-tls-secret  # no exist secre

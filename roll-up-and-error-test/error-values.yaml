@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: multi-protocol-service
+spec:
+  replicas: -1  # negative quantity
+  selector:
+    matchLabels:
+      app: multi-protocol-service
+  template:
+    metadata:
+      labels:
+        app: multi-protocol-service
+    spec:
+      containers:
+      - name: multi-protocol-service
+        image: containerservice.azurecr.io/multi-protocol-service:non-existent-tag  # no exist
+        ports:
+        - containerPort: 9999  # no exist
+        - containerPort: 9443
+        - containerPort: 12345
+        env:
+        - name: CONFIG_PATH
+          value: "/invalid/path/config.yaml"  #no exist
+        resources:
+          requests:
+            cpu: "10"  # query mory
+            memory: "100Gi"  # limit more
+          limits:
+            cpu: "20"
+            memory: "200Gi"
+      imagePullSecrets:
+      - name: non-existent-secret  # no exist secret

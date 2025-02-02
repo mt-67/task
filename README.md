@@ -207,3 +207,5 @@ All Pipelines are successfully functioning and fulfilling their task. All the ne
 
 
 # The project team
+
+- Matsvei Asipenka

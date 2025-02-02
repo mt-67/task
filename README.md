@@ -16,11 +16,11 @@ Develop and deploy a service that will listen to HTTP, HTTPS, and custom TCP por
 
 # Technologies
 
-– [Python][#Python]
-– [Flask framework][#Flask framework]
-– [Docker][#Docker]
-– [Kubernetes][#Kubernetes]
-– [Azure CR][#Azure CR]
-– [Azure KS][#Azure KS]
-– [Helm-chart][#Helm-chart]
-– [Azure DevOps][#Azure DevOps]
+– [Python](#Python)
+– [Flask framework](#Flask_framework)
+– [Docker](#Docker)
+– [Kubernetes](#Kubernetes)
+– [Azure CR](#Azure_CR)
+– [Azure KS](#Azure_KS)
+– [Helm-chart](#Helm-chart)
+– [Azure DevOps](#Azure_DevOps)

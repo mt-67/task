@@ -57,6 +57,7 @@ Flash works via HTTP by default, so to add HTTPS support to Flash, you need to c
 ```Bash
 openssl x509 -req -in csr.pem -signkey key.pem -out cert.pem -days 365 
 ```
+
 It will be valid for 365 days.
 
 

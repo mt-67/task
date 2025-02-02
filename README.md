@@ -29,3 +29,16 @@ Develop and deploy a service that will listen to HTTP, HTTPS, and custom TCP por
 - [Azure DevOps](#Azure_DevOps)
 - [Helm-chart](#Helm-chart)
 
+
+# Instruction
+
+# Create Multi-Port Service
+
+First, I created a Flask application in Python that will listen to HTTP/HTTPS/TCP ports (80, 443, 8080).
+
+Flash works via HTTP by default, so to add HTTPS support to Flash, you need to configure self-signed SSL certificates, key.pem and cert.pem, using the command.
+
+```Bash
+openssl x509 -req -in csr.pem -signkey key.pem -out cert.pem -days 365 
+```
+It will be valid for 365 days.

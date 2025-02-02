@@ -101,3 +101,37 @@ I have set up policy and given myself an « Owner »  for full access to all act
 
 
 # Manifestos
+
+I have written YAML files to manage Kybernetes. I wrote a Deployment file to determine the number of pos, port forwarding inside the container. 
+
+I wrote Service file to provide access to the application via ports, load balancing LoadBalancer between pods, to access the service via an external IP, and scalability.  
+
+I wrote an Ingress file for routing data inside the cluster via protocols to the service and ngress-nginx-controller.
+Created a Secret for storing confidential data
+
+I have applied these manifests to the cluster
+
+```Bash
+kubectl apply -f <name-Manifestos>
+```
+and checked the status of the resources
+
+```Bash
+kubectl get <name-Manifestos-or-pods>
+```
+
+
+# Helm-chart
+
+
+I created a Helm chart to package Kubernetes manifests for easy deployment and configuration management.
+
+Helm simplifies the deployment of applications in Kubernetes, automates updates, and manages configuration settings via values.yaml
+
+I created Helm-chart
+
+```Bash
+helm create relis-my-service
+```
+
+Replaced static values in deployment.yml , service.yaml and ingress.yaml for my template variables.

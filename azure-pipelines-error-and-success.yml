@@ -1,0 +1,74 @@
+trigger:
+- main  
+
+pool:
+  vmImage: 'ubuntu-latest'  
+
+variables:
+  helmRelease: "test-helm-release"
+  namespace: "default"
+  helmChartPath: "helm-service"
+  goodValuesFile: "helm-service/values.yaml"
+  badValuesFile: "helm-service/tests/error-values.yaml"
+
+stages:
+
+### Successful deployment
+- stage: Deploy_Success
+  displayName: "Successful deployment"
+  jobs:
+  - job: DeploySuccess
+    displayName: "Deploy Helm Chart (Good Config)"
+    steps:
+    - checkout: self  # download code
+
+    - task: HelmInstaller@0
+      displayName: "Install Helm"
+      inputs:
+        helmVersion: "latest"
+
+    - script: |
+        echo "Deploying Helm chart with correct values..."
+        helm upgrade --install $(helmRelease) $(helmChartPath) -f $(goodValuesFile) --namespace $(namespace) --create-namespace
+      displayName: "Deploy good Helm release"
+
+    - script: |
+        echo "Running Python script to verify deployment..."
+        python3 helm-service/scripts/check-error-and-rollback.py
+      displayName: "Run Python verification script"
+
+
+### erroneous deployment
+- stage: Deploy_Failure
+  displayName: "erroneous deployment"
+  jobs:
+  - job: DeployBadHelmChart
+    displayName: "Deploy Helm Chart (Bad Config)"
+    steps:
+    - checkout: self
+
+    - task: HelmInstaller@0
+      displayName: "Install Helm"
+      inputs:
+        helmVersion: "latest"
+
+    - script: |
+        echo "Deploying Helm chart with bad values..."
+        helm upgrade --install $(helmRelease) $(helmChartPath) -f $(badValuesFile) --namespace $(namespace) --timeout 60s || echo "Deployment failed as expected"
+      displayName: "Deploy bad Helm release"
+
+    - script: |
+        echo "Checking Helm release status..."
+        helm status $(helmRelease) || echo "Helm release is in failed state (expected)"
+      displayName: "Check Helm Status"
+
+    - script: |
+        echo "Running Python script to verify failure..."
+        python3 helm-service/scripts/check-error-and-rollback.py
+      displayName: "Run Python verification script"
+
+    - script: |
+        echo "Rolling back to previous Helm release..."
+        helm rollback $(helmRelease) 1 || echo "Rollback failed"
+      displayName: "Rollback on failure"
+      condition: failed()

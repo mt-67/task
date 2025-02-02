@@ -16,7 +16,7 @@ Develop and deploy a service that will listen to HTTP, HTTPS, and custom TCP por
 
 # Technologies
 
-– [Python](#Python)
+– 
 – [Flask framework](#Flask_framework)
 – [Docker](#Docker)
 – [Kubernetes](#Kubernetes)
@@ -25,7 +25,7 @@ Develop and deploy a service that will listen to HTTP, HTTPS, and custom TCP por
 – [Helm-chart](#Helm-chart)
 – [Azure DevOps](#Azure_DevOps)
 
-- [PostgreSQL](#PostgreSQL)
+- [Python](#Python)
 - [Python](#Python)
 - [Elasticsearch](#Elasticsearch)
 - [Kibana](#Kibana)

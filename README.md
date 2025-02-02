@@ -69,6 +69,7 @@ Using the official Python image
 ```Bash
 FROM python:3.13-slim
 ```
+
 Mappins ports 
 
 ```Bash

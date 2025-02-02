@@ -15,6 +15,7 @@ Develop and deploy a service that will listen to HTTP, HTTPS, and custom TCP por
 - [Content](#Content)
 - [Technologies](#Technologies)
 - [Instruction](#Instruction)
+- [Conducted Performance Tests](#Conducted-Performance-Tests)
 - [The project team](#The_project_team)
 
 
@@ -192,3 +193,17 @@ I created a Python script that automatically checks the success of the service d
 I have created a Python script that automatically checks the availability of ports and, if necessary, Rollback « accessibility-rollback.py »
 
 I  created a Python script that automatically checks only the availability of ports « only-check-ports.py »
+
+
+# Conducted Terformance Tests
+
+Tests have been conducted, and all the elements of the assignment are functioning perfectly.
+
+All ports are available. All the manifests and Helm-chart are successfully implemented in Kubernetes and are functioning. 
+
+All the necessary python scripts are successfully running and working. All the Nodes, pods, and container successfully exist, work, and distribute the load.  All the necessary Azure services are working successfully. 
+
+All Pipelines are successfully functioning and fulfilling their task. All the necessary YAML files have been written, implemented, and are functioning successfully.
+
+
+# The project team

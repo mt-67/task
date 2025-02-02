@@ -1,0 +1,30 @@
+trigger:
+  - main  
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+steps:
+- checkout: self  
+
+- script: |
+    git clone https://github.com/mt-67/task.git
+  displayName: 'clone GitHub'
+
+- script: |
+    ls -la task
+  displayName: 'check file'
+
+- task: UsePythonVersion@0
+  inputs:
+    versionSpec: '3.x'
+    addToPath: true
+  displayName: 'py install'
+
+- script: |
+    pip3 install -r task/requirements.txt
+  displayName: 'install'
+
+- script: |
+    python task/only-check-ports.py
+  displayName: 'start'

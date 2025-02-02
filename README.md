@@ -124,7 +124,7 @@ kubectl get <name-Manifestos-or-pods>
 # Helm-chart
 
 
-I created a Helm chart to package Kubernetes manifests for easy deployment and configuration management.
+I created a Helm chart to package Kubernetes manifests for deployment automation and configuration management.
 
 Helm simplifies the deployment of applications in Kubernetes, automates updates, and manages configuration settings via values.yaml
 
@@ -134,4 +134,35 @@ I created Helm-chart
 helm create relis-my-service
 ```
 
-Replaced static values in deployment.yml , service.yaml and ingress.yaml for my template variables.
+Replaced static values in the Helm chart with deployment.yml , service.yaml and ingress.yaml for my template variables.
+
+
+I checked the correctness
+
+```Bash
+helm list relis-my-service
+```
+
+Launched a test rendering of the manifests
+
+```Bash
+helm template relis-my-service
+```
+
+Installed the Helm chart in the kubernetes cluster
+
+```Bash
+helm install relis-my-service ./
+```
+
+Checked the status
+
+```Bash
+helm list
+```
+
+To make changes, I am updating the expanded release.
+
+```Bash
+helm upgrade relis-my-service ./
+```

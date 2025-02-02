@@ -2,11 +2,9 @@ trigger:
   - main  
 
 pool:
-  vmImage: 'ubuntu-latest'
+  vmImage: 'ubuntu-latest' 
 
 steps:
-- checkout: self  
-
 - script: |
     git clone https://github.com/mt-67/task.git
   displayName: 'clone GitHub'
@@ -19,9 +17,12 @@ steps:
   inputs:
     versionSpec: '3.x'
     addToPath: true
-  displayName: 'py install'
+  displayName: 'install python'
 
+- script: |
+    pip install requests
+  displayName: 'install'
 
 - script: |
     python task/only-check-ports.py
-  displayName: 'start'
+  displayName: 'start script'

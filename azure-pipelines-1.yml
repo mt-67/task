@@ -22,7 +22,7 @@ steps:
   displayName: 'py install'
 
 - script: |
-    pip3 install -r task/requirements.txt
+    pip install -r task/requirements.txt
   displayName: 'install'
 
 - script: |

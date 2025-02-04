@@ -7,15 +7,6 @@ The project is the development and automation of the deployment of a service tha
 
 Flask application « multi-protocol-service.py » in Python-script that will listen to HTTP/HTTPS/TCP ports (80, 443, 8080) and outputs « Hello, Noda » on https://192.168.1.32:443 and 20.103.44.21 and http://192.168.1.32:80
 
-link to the pipeline with automatic port availability check
-https://dev.azure.com/matvey090/pipeline%20helm/_build?definitionId=2
-
-link to a pipeline with automatic verification of deployment, ports, and rollback, if necessary 
-https://dev.azure.com/matvey090/pipeline%20helm/_build?definitionId=1
-
-link to a pipeline with automatic successful and unsuccessful roll-up
-https://dev.azure.com/matvey090/pipeline%20helm/_build?definitionId=3
-
 
 # Purpose
 
@@ -202,6 +193,16 @@ This file describes the steps for the CI/CD pipeline and performs a port availab
 3. I wrote the wrong error deployment files on « error-deployment.yaml » and « error-values.yaml » for artificially unsuccessful rolls ups
 
 I made an Pipeline « azure-pipelines-error-and-success.yml » that makes successful and unsuccessful rolls and runs a Python script for verification « check-error-and-rollback.py »
+
+
+link to the pipeline with automatic port availability check
+https://dev.azure.com/matvey090/pipeline%20helm/_build?definitionId=2
+
+link to a pipeline with automatic verification of deployment, ports, and rollback, if necessary 
+https://dev.azure.com/matvey090/pipeline%20helm/_build?definitionId=1
+
+link to a pipeline with automatic successful and unsuccessful roll-up
+https://dev.azure.com/matvey090/pipeline%20helm/_build?definitionId=3
 
 
 # Python-script Check

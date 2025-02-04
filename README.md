@@ -5,16 +5,9 @@ The project is the development and automation of the deployment of a service tha
 
 # Links
 
-Flask application « multi-protocol-service.py » in Python-script that will listen to HTTP/HTTPS/TCP ports (80, 443, 8080) and outputs « Hello, Noda » on https://192.168.1.32:443 and 20.103.44.21 and http://192.168.1.32:80
+my DNS http://protocolservices.westeurope.azurecontainer.io 
 
-link to the pipeline with automatic port availability check
-https://dev.azure.com/matvey090/pipeline%20helm/_build?definitionId=2
-
-link to a pipeline with automatic verification of deployment, ports, and rollback, if necessary 
-https://dev.azure.com/matvey090/pipeline%20helm/_build?definitionId=1
-
-link to a pipeline with automatic successful and unsuccessful roll-up
-https://dev.azure.com/matvey090/pipeline%20helm/_build?definitionId=3
+Flask application « multi-protocol-service.py » in Python-script that will listen to HTTP/HTTPS/TCP ports (80, 443, 8080) and outputs « Hello, Noda » on ip http://108.141.128.223 and https://20.61.89.128 and 20.103.44.21
 
 
 # Purpose
@@ -50,7 +43,7 @@ Develop and deploy a service that will listen to HTTP, HTTPS, and custom TCP por
 
 # Create Multi-Port Service
 
-First, I created a Flask application « multi-protocol-service.py » in Python that will listen to HTTP/HTTPS/TCP ports (80, 443, 8080) and outputs « Hello, Noda » on https://192.168.1.32:443 and 20.103.44.21 and http://192.168.1.32:80
+First, I created a Flask application « multi-protocol-service.py » in Python that will listen to HTTP/HTTPS/TCP ports (80, 443, 8080) and outputs « Hello, Noda » on ip http://108.141.128.223 and https://20.61.89.128 and 20.103.44.21 
 
 Flash works through HTTP by default, so to add HTTPS support to Flash, you need to configure self-signed SSL certificates, key.pem and cert.pem, Self-signed SSL certificates need to encrypt traffic without using commercial certificates.
 
@@ -123,10 +116,10 @@ I have set up policy and given myself an « Owner »  for full access to all act
 
 I have written YAML files to manage Kybernetes. I wrote a Deployment file to determine the number of pos, port forwarding inside the container. 
 
-I wrote Service file to provide access to the application via ports, load balancing LoadBalancer between pods, to access the service via an external IP, and scalability.  
+I wrote Service file to provide access to the application via ports, load balancing LoadBalancer between pods, to access the service thought an external IP, and scalability.  
 
 I wrote an Ingress file for routing data inside the cluster via protocols to the service and ngress-nginx-controller.
-Created a Secret for storing confidential data
+Created a Secret for storing confidential data, and created DNS-name  http://protocolservices.westeurope.azurecontainer.io 
 
 I have applied these manifests to the cluster
 
@@ -189,19 +182,32 @@ helm upgrade relis-my-service ./
 
 # Azure DevOps Pipelines/Check Deployment, Status Deploy Helm release, available ports and unsuccessful roll up
 
-1. I signed up with a subscription and i have established that the Pipeline will interact with Azure kubernetes and automatically make a deployment to kubernetes through Helm and check ports when you push or commit to the github repository and Rollback if necessary.
+
+ I signed up with a subscription, connected the container registry and Kubernetes cluster. 
+
+ 
+1. I also made an Azure Pipelines « azure-pipelines-check-ports.yml » which only checks the availability of ports using Python script « only-check-ports.py »
+
+link to the pipeline with automatic port availability check
+https://dev.azure.com/matvey090/pipeline%20helm/_build?definitionId=2
+
+
+2. I made the pipeline interact with Azure kubernetes and automatically deploy to kubernetes via Helm and check ports when pushing or committing to the github repository and rollback if necessary.
 
 Created « azure-pipelines-helm-deploy-and-check.yml » in this file, I additionally activated a Python script « accessibility-rollback.py »  that checks the availability of ports and Status Deploy Helm release , if necessary, Rollback 
 
 This file describes the steps for the CI/CD pipeline and performs a port availability test in Azure DevOps.
 
-
-2. I also made an Azure Pipelines « azure-pipelines-check-ports.yml » which only checks the availability of ports using Python script « only-check-ports.py »
+link to a pipeline with automatic verification of deployment, ports, and rollback, if necessary 
+https://dev.azure.com/matvey090/pipeline%20helm/_build?definitionId=1
 
 
 3. I wrote the wrong error deployment files on « error-deployment.yaml » and « error-values.yaml » for artificially unsuccessful rolls ups
 
 I made an Pipeline « azure-pipelines-error-and-success.yml » that makes successful and unsuccessful rolls and runs a Python script for verification « check-error-and-rollback.py »
+
+link to a pipeline with automatic successful and unsuccessful roll-up
+https://dev.azure.com/matvey090/pipeline%20helm/_build?definitionId=3
 
 
 # Python-script Check

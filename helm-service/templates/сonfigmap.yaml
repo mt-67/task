@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: {{ .Release.Name }}-scripts
+  name: check-error-and-rollback
 data:
   check-error-and-rollback.py: |
-    {{ .Files.Get "scripts/check-error-and-rollback.py" | indent 4 }}
+    {{- .Files.Get "files/check-error-and-rollback.py" | nindent 4 }}

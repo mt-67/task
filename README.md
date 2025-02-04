@@ -7,7 +7,7 @@ The project is the development and automation of the deployment of a service tha
 
 my DNS http://protocolservices.westeurope.azurecontainer.io 
 
-Flask application « multi-protocol-service.py » in Python-script that will listen to HTTP/HTTPS/TCP ports (80, 443, 8080) and outputs « Hello, Noda » on ip http://108.141.128.223 and https://20.61.89.128 and 20.103.44.21
+Flask application « multi-protocol-service.py » in Python-script that will listen to HTTP/HTTPS/TCP ports (80, 443, 8080) and outputs « Hello, Noda » on ip http://108.141.128.223 and 20.103.44.21
 
 
 # Purpose
@@ -43,7 +43,7 @@ Develop and deploy a service that will listen to HTTP, HTTPS, and custom TCP por
 
 # Create Multi-Port Service
 
-First, I created a Flask application « multi-protocol-service.py » in Python that will listen to HTTP/HTTPS/TCP ports (80, 443, 8080) and outputs « Hello, Noda » on ip http://108.141.128.223 and https://20.61.89.128 and 20.103.44.21 
+First, I created a Flask application « multi-protocol-service.py » in Python that will listen to HTTP/HTTPS/TCP ports (80, 443, 8080) and outputs « Hello, Noda » on ip http://108.141.128.223 and 20.103.44.21 
 
 Flash works through HTTP by default, so to add HTTPS support to Flash, you need to configure self-signed SSL certificates, key.pem and cert.pem, Self-signed SSL certificates need to encrypt traffic without using commercial certificates.
 

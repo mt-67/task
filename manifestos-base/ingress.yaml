@@ -15,6 +15,20 @@ spec:
           service:
             name: service-ingress
             port:
+              number: 80
+      - path: /http
+        pathType: Prefix
+        backend:
+          service:
+            name: service-ingress
+            port:
+              number: 8080
+      - path: /https
+        pathType: Prefix
+        backend:
+          service:
+            name: service-ingress
+            port:
               number: 443
   tls:
   - hosts:

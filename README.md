@@ -181,23 +181,31 @@ helm upgrade relis-my-service ./
 # Azure DevOps Pipelines/Check Deployment, Status Deploy Helm release, available ports and unsuccessful roll up
 
 
+ I signed up with a subscription, connected the container registry and Kubernetes cluster. 
+
+ 
+1. I also made an Azure Pipelines « azure-pipelines-check-ports.yml » which only checks the availability of ports using Python script « only-check-ports.py »
+
 link to the pipeline with automatic port availability check
 https://dev.azure.com/matvey090/pipeline%20helm/_build?definitionId=2
 
 
-1. I signed up with a subscription and i have established that the Pipeline will interact with Azure kubernetes and automatically make a deployment to kubernetes through Helm and check ports when you push or commit to the github repository and Rollback if necessary.
+2. I made the pipeline interact with Azure kubernetes and automatically deploy to kubernetes via Helm and check ports when pushing or committing to the github repository and rollback if necessary.
 
 Created « azure-pipelines-helm-deploy-and-check.yml » in this file, I additionally activated a Python script « accessibility-rollback.py »  that checks the availability of ports and Status Deploy Helm release , if necessary, Rollback 
 
 This file describes the steps for the CI/CD pipeline and performs a port availability test in Azure DevOps.
 
-
-2. I also made an Azure Pipelines « azure-pipelines-check-ports.yml » which only checks the availability of ports using Python script « only-check-ports.py »
+link to a pipeline with automatic verification of deployment, ports, and rollback, if necessary 
+https://dev.azure.com/matvey090/pipeline%20helm/_build?definitionId=1
 
 
 3. I wrote the wrong error deployment files on « error-deployment.yaml » and « error-values.yaml » for artificially unsuccessful rolls ups
 
 I made an Pipeline « azure-pipelines-error-and-success.yml » that makes successful and unsuccessful rolls and runs a Python script for verification « check-error-and-rollback.py »
+
+link to a pipeline with automatic successful and unsuccessful roll-up
+https://dev.azure.com/matvey090/pipeline%20helm/_build?definitionId=3
 
 
 # Python-script Check

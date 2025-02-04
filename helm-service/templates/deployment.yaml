@@ -4,10 +4,10 @@ metadata:
   name: multi-protocol-service
   labels:
     app: multi-protocol-service
-    app.kubernetes.io/managed-by: Helm  
+    app.kubernetes.io/managed-by: Helm  # Убедитесь, что этот лейбл присутствует
   annotations:
-    meta.helm.sh/release-name: {{ .Release.Name }}  
-    meta.helm.sh/release-namespace: {{ .Release.Namespace }}  
+    meta.helm.sh/release-name: {{ .Release.Name }}  # Имя релиза из Helm
+    meta.helm.sh/release-namespace: {{ .Release.Namespace }}  # Пространство имен из Helm
 spec:
   replicas: {{ .Values.replicaCount }}
   selector:

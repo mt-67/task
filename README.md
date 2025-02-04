@@ -43,7 +43,7 @@ Develop and deploy a service that will listen to HTTP, HTTPS, and custom TCP por
 
 # Create Multi-Port Service
 
-First, I created a Flask application « multi-protocol-service.py » in Python that will listen to HTTP/HTTPS/TCP ports (80, 443, 8080) and outputs « Hello, Noda » on https://192.168.1.32:443 and 20.103.44.21 and http://192.168.1.32:80
+First, I created a Flask application « multi-protocol-service.py » in Python that will listen to HTTP/HTTPS/TCP ports (80, 443, 8080) and outputs « Hello, Noda » on ip 20.103.44.21 
 
 Flash works through HTTP by default, so to add HTTPS support to Flash, you need to configure self-signed SSL certificates, key.pem and cert.pem, Self-signed SSL certificates need to encrypt traffic without using commercial certificates.
 

@@ -5,7 +5,7 @@ The project is the development and automation of the deployment of a service tha
 
 # Links
 
-my DNS protocolservices.westeurope.azurecontainer.io
+my DNS http://protocolservices.westeurope.azurecontainer.io 
 
 Flask application « multi-protocol-service.py » in Python-script that will listen to HTTP/HTTPS/TCP ports (80, 443, 8080) and outputs « Hello, Noda » on https://192.168.1.32:443 and 20.103.44.21 and http://192.168.1.32:80
 
@@ -116,10 +116,10 @@ I have set up policy and given myself an « Owner »  for full access to all act
 
 I have written YAML files to manage Kybernetes. I wrote a Deployment file to determine the number of pos, port forwarding inside the container. 
 
-I wrote Service file to provide access to the application via ports, load balancing LoadBalancer between pods, to access the service via an external IP, and scalability.  
+I wrote Service file to provide access to the application via ports, load balancing LoadBalancer between pods, to access the service thought an external IP, and scalability.  
 
 I wrote an Ingress file for routing data inside the cluster via protocols to the service and ngress-nginx-controller.
-Created a Secret for storing confidential data
+Created a Secret for storing confidential data, and created DNS-name  http://protocolservices.westeurope.azurecontainer.io 
 
 I have applied these manifests to the cluster
 

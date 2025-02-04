@@ -1,24 +1,25 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name:  multi-protocol-service
+  name: {{ .Release.Name }}
   labels:
-    app:  multi-protocol-service 
+    app: {{ .Release.Name }}
 spec:
-  replicas:  2 
+  replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
-      app:  multi-protocol-service  
+      app: {{ .Release.Name }}
   template:
     metadata:
       labels:
-        app: multi-protocol-service
+        app: {{ .Release.Name }}
     spec:
+      serviceAccountName: {{ if .Values.serviceAccount.create }}{{ .Release.Name }}-sa{{ else }}default{{ end }}
       containers:
-        - name:  multi-protocol-service 
-          image:  containerservice.azurecr.io/multi-protocol-service:latest 
-          imagePullPolicy:  IfNotPresent
+        - name: {{ .Release.Name }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
           ports:
-            - containerPort: 80
-            - containerPort: 443
-            - containerPort: 8080
+            - containerPort: {{ .Values.service.ports.http }}
+            - containerPort: {{ .Values.service.ports.https }}
+            - containerPort: {{ .Values.service.ports.tcp }}

@@ -3,6 +3,20 @@
 The project is the development and automation of the deployment of a service that listens to HTTP, HTTPS, and custom TCP ports. We have created a Python application using Flask for HTTP/HTTPS and the socket standard library for TCP. The application is packaged in a Docker container, which allows it to be deployed to Kubernetes in Azure ACR. The process includes creating manifests for Kubernetes, configuring the Helm chart to simplify deployment, and integrating with Azure DevOps to automatically deploy and test services.
 
 
+# Links
+
+Flask application « multi-protocol-service.py » in Python-script that will listen to HTTP/HTTPS/TCP ports (80, 443, 8080) and outputs « Hello, Noda » on https://192.168.1.32:443 and 20.103.44.21 and http://192.168.1.32:80
+
+link to the pipeline with automatic port availability check
+https://dev.azure.com/matvey090/pipeline%20helm/_build?definitionId=2
+
+link to a pipeline with automatic verification of deployment, ports, and rollback, if necessary 
+https://dev.azure.com/matvey090/pipeline%20helm/_build?definitionId=1
+
+link to a pipeline with automatic successful and unsuccessful roll-up
+https://dev.azure.com/matvey090/pipeline%20helm/_build?definitionId=3
+
+
 # Purpose
 
 Develop and deploy a service that will listen to HTTP, HTTPS, and custom TCP ports using Python (Flask for HTTP/HTTPS and sockets for TCP). The service is packaged in a Docker container and deployed to Kybernetes using a Helm chart, providing automation through Azure DevOps for CI/CD pipelines. The project also implemented the deployment success check and rollback of the release in case of errors, which ensures stable operation of services in Kubernetes.
@@ -11,11 +25,13 @@ Develop and deploy a service that will listen to HTTP, HTTPS, and custom TCP por
 # Content
 
 - [Multi-Port Service Deployment with Kubernetes and Azure DevOps Pipeline](#Multi-Port_Service_Deployment_with_Kubernetes_and_Azure_DevOps_Pipeline)
+- [Links](#Links)
 - [Purpose](#Purpose)
 - [Content](#Content)
 - [Technologies](#Technologies)
 - [Instruction](#Instruction)
-- [The project team](#The_project_team)
+- [Conducted Performance Tests](#Conducted-Performance-Tests)
+- [The project Team](#The_project_team)
 
 
 # Technologies
@@ -36,11 +52,12 @@ Develop and deploy a service that will listen to HTTP, HTTPS, and custom TCP por
 
 First, I created a Flask application « multi-protocol-service.py » in Python that will listen to HTTP/HTTPS/TCP ports (80, 443, 8080) and outputs « Hello, Noda » on https://192.168.1.32:443 and 20.103.44.21 and http://192.168.1.32:80
 
-Flash works via HTTP by default, so to add HTTPS support to Flash, you need to configure self-signed SSL certificates, key.pem and cert.pem, Self-signed SSL certificates need to encrypt traffic without using commercial certificates.
+Flash works through HTTP by default, so to add HTTPS support to Flash, you need to configure self-signed SSL certificates, key.pem and cert.pem, Self-signed SSL certificates need to encrypt traffic without using commercial certificates.
 
 ```Bash
 openssl x509 -req -in csr.pem -signkey key.pem -out cert.pem -days 365 
 ```
+
 It will be valid for 365 days.
 
 
@@ -53,6 +70,7 @@ Using the official Python image
 ```Bash
 FROM python:3.13-slim
 ```
+
 Mappins ports 
 
 ```Bash
@@ -60,6 +78,7 @@ EXPOSE 80
 EXPOSE 443
 EXPOSE 8080
 ```
+
 and Launching the Flask application
 
 ```Bash
@@ -114,6 +133,7 @@ I have applied these manifests to the cluster
 ```Bash
 kubectl apply -f <name-Manifestos>
 ```
+
 and checked the status of the resources
 
 ```Bash
@@ -123,8 +143,7 @@ kubectl get <name-Manifestos-or-pods>
 
 # Helm-chart
 
-
-I created a Helm chart to package Kubernetes manifests for easy deployment and configuration management.
+I created a Helm chart to package Kubernetes manifests for deployment automation and configuration management.
 
 Helm simplifies the deployment of applications in Kubernetes, automates updates, and manages configuration settings via values.yaml
 
@@ -134,4 +153,77 @@ I created Helm-chart
 helm create relis-my-service
 ```
 
-Replaced static values in deployment.yml , service.yaml and ingress.yaml for my template variables.
+Replaced static values in the Helm chart with deployment.yml , service.yaml and ingress.yaml for my template variables.
+
+
+I checked the correctness
+
+```Bash
+helm list relis-my-service
+```
+
+Launched a test rendering of the manifests
+
+```Bash
+helm template relis-my-service
+```
+
+Installed the Helm chart in the kubernetes cluster
+
+```Bash
+helm install relis-my-service ./
+```
+
+Checked the status
+
+```Bash
+helm list
+```
+
+To make changes, I am updating the expanded release.
+
+```Bash
+helm upgrade relis-my-service ./
+```
+
+
+# Azure DevOps Pipelines/Check Deployment, Status Deploy Helm release, available ports and unsuccessful roll up
+
+1. I signed up with a subscription and i have established that the Pipeline will interact with Azure kubernetes and automatically make a deployment to kubernetes through Helm and check ports when you push or commit to the github repository and Rollback if necessary.
+
+Created « azure-pipelines-helm-deploy-and-check.yml » in this file, I additionally activated a Python script « accessibility-rollback.py »  that checks the availability of ports and Status Deploy Helm release , if necessary, Rollback 
+
+This file describes the steps for the CI/CD pipeline and performs a port availability test in Azure DevOps.
+
+
+2. I also made an Azure Pipelines « azure-pipelines-check-ports.yml » which only checks the availability of ports using Python script « only-check-ports.py »
+
+
+3. I wrote the wrong error deployment files on « error-deployment.yaml » and « error-values.yaml » for artificially unsuccessful rolls ups
+
+I made an Pipeline « azure-pipelines-error-and-success.yml » that makes successful and unsuccessful rolls and runs a Python script for verification « check-error-and-rollback.py »
+
+
+# Python-script Check
+
+I created a Python script that automatically checks the success of the service deployment after deployment « check-error-and-rollback.py » 
+
+I have created a Python script that automatically checks the availability of ports and, if necessary, Rollback « accessibility-rollback.py »
+
+I  created a Python script that automatically checks only the availability of ports « only-check-ports.py »
+
+
+# Conducted Terformance Tests
+
+Tests have been conducted, and all the elements of the assignment are functioning perfectly.
+
+All ports are available. All the manifests and Helm-chart are successfully implemented in Kubernetes and are functioning. 
+
+All the necessary python scripts are successfully running and working. All the Nodes, pods, and container successfully exist, work, and distribute the load.  All the necessary Azure services are working successfully. 
+
+All Pipelines are successfully functioning and fulfilling their task. All the necessary YAML files have been written, implemented, and are functioning successfully.
+
+
+# The project Team
+
+- Matsvei Asipenka

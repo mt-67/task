@@ -1,4 +1,5 @@
 replicaCount: 0  # 0 replicas
+kind: Deployment
 
 image:
   repository: containerservice.azurecr.io/multi-protocol-service

@@ -1,6 +1,8 @@
 replicaCount: 0  # 0 replicas
 kind: Deployment
 apiVersion: apps/v1
+metadata:
+  name: multi-protocol-service
 image:
   repository: containerservice.azurecr.io/multi-protocol-service
   tag: non-existent-tag  # no exist

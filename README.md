@@ -180,6 +180,11 @@ helm upgrade relis-my-service ./
 
 # Azure DevOps Pipelines/Check Deployment, Status Deploy Helm release, available ports and unsuccessful roll up
 
+
+link to the pipeline with automatic port availability check
+https://dev.azure.com/matvey090/pipeline%20helm/_build?definitionId=2
+
+
 1. I signed up with a subscription and i have established that the Pipeline will interact with Azure kubernetes and automatically make a deployment to kubernetes through Helm and check ports when you push or commit to the github repository and Rollback if necessary.
 
 Created « azure-pipelines-helm-deploy-and-check.yml » in this file, I additionally activated a Python script « accessibility-rollback.py »  that checks the availability of ports and Status Deploy Helm release , if necessary, Rollback 
@@ -193,10 +198,6 @@ This file describes the steps for the CI/CD pipeline and performs a port availab
 3. I wrote the wrong error deployment files on « error-deployment.yaml » and « error-values.yaml » for artificially unsuccessful rolls ups
 
 I made an Pipeline « azure-pipelines-error-and-success.yml » that makes successful and unsuccessful rolls and runs a Python script for verification « check-error-and-rollback.py »
-
-
-link to the pipeline with automatic port availability check
-https://dev.azure.com/matvey090/pipeline%20helm/_build?definitionId=2
 
 
 # Python-script Check

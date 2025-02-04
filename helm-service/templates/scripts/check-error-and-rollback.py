@@ -10,7 +10,7 @@ HOSTS = ["192.168.1.32", "20.103.44.21"]
 PORTS = [80, 443, 8080]
 
 
-'''checking availability Http/Https'''
+# checking availability Http/Https
 def check_http_https(host, port):
     url = f"http://{host}:{port}" if port == 80 else f"https://{host}:{port}"
     try:
@@ -28,7 +28,7 @@ def check_http_https(host, port):
         return False
 
 
-'''checking availability Http/Https'''
+#checking availability Http/Https
 def check_tcp_port(host, port):
     try:
         with socket.create_connection((host, port), timeout=5):
@@ -40,7 +40,7 @@ def check_tcp_port(host, port):
         return False
 
 
-'''checking status Helm-release'''
+# checking status Helm-release
 def check_helm_status():
     try:
         result = subprocess.run(["helm", "status", RELEASE_NAME, "-n", NAMESPACE], capture_output=True, text=True, check=True)
@@ -51,7 +51,7 @@ def check_helm_status():
         return False
 
 
-'''rollback Helm-release'''
+# rollback Helm-release
 def rollback_helm():
     print("progress rollback")
     try:

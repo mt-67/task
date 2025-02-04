@@ -7,7 +7,7 @@ The project is the development and automation of the deployment of a service tha
 
 my DNS http://protocolservices.westeurope.azurecontainer.io 
 
-Flask application « multi-protocol-service.py » in Python-script that will listen to HTTP/HTTPS/TCP ports (80, 443, 8080) and outputs « Hello, Noda » on https://192.168.1.32:443 and 20.103.44.21 and http://192.168.1.32:80
+Flask application « multi-protocol-service.py » in Python-script that will listen to HTTP/HTTPS/TCP ports (80, 443, 8080) and outputs « Hello, Noda » on http:// 20.103.44.21
 
 
 # Purpose

@@ -2,6 +2,12 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: multi-protocol-service
+  labels:
+    app: multi-protocol-service
+    app.kubernetes.io/managed-by: Helm 
+  annotations:
+    meta.helm.sh/release-name: my-service-helm
+    meta.helm.sh/release-namespace: default 
 spec:
   replicas: 2
   selector:

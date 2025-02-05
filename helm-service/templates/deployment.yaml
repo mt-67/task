@@ -1,9 +1,9 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: multi-protocol-service
+  name: {{ .Release.Name }}
   labels:
-    app: multi-protocol-service
+    app: {{ .Chart.Name }}
     app.kubernetes.io/managed-by: Helm 
   annotations:
     meta.helm.sh/release-name: {{ .Release.Name }} 
@@ -12,16 +12,21 @@ spec:
   replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
-      app: multi-protocol-service
+      app: {{ .Chart.Name }}
   template:
     metadata:
       labels:
-        app: multi-protocol-service
+        app: {{ .Chart.Name }}
     spec:
       containers:
-        - name: multi-protocol-service
+        - name: {{ .Chart.Name }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
           ports:
-            - containerPort: 80
-            - containerPort: 443
-            - containerPort: 8080
+            {{- range .Values.ports }}
+            - containerPort: {{ . }}
+            {{- end }}
+      {{- if .Values.image.pullSecret }}
+      imagePullSecrets:
+        - name: {{ .Values.image.pullSecret }}
+      {{- end }}

@@ -21,6 +21,13 @@ service:
 serviceAccount:
   create: true
 
+controller:
+  extraEnvs:
+    - name: pod1
+      valueFrom:
+        fieldRef:
+          fieldPath: metadata.name
+
 ingress:
   enabled: true
   ingressClassName: nginx

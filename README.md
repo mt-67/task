@@ -133,7 +133,6 @@ and checked the status of the resources
 kubectl get <name-Manifestos-or-pods>
 ```
 
-
 # Helm-chart
 
 I created a Helm chart to package Kubernetes manifests for deployment automation and configuration management.

@@ -2,9 +2,9 @@ import socket
 import requests
 
 
-HOSTS = ["192.168.1.32", "20.103.44.21"]
+HOSTS = ["108.141.128.223", "20.61.89.128"]
 
-PORTS = [80, 443, 8080,]
+PORTS = [80, 443, 8080]
 
 """Checking the availability of Http/Https ports"""
 def check_http_https(host, port):

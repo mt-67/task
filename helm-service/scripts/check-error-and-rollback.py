@@ -6,7 +6,7 @@ import sys
 
 RELEASE_NAME = "relis-my-service"
 NAMESPACE = "default"
-HOSTS = ["192.168.1.32", "20.103.44.21"]
+HOSTS = ["108.141.128.223", "20.61.89.128"]
 PORTS = [80, 443, 8080]
 
 

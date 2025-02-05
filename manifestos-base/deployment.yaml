@@ -2,15 +2,17 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: multi-protocol-service
-spec:
-  replicas: 2
-  selector:
-    matchLabels:
-      app: multi-protocol-service
+  labels:
+    app: multi-protocol-service
     app.kubernetes.io/managed-by: Helm  
   annotations:
     meta.helm.sh/release-name: my-helm-service
     meta.helm.sh/release-namespace: default
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: multi-protocol-service  # Теперь совпадает с template.metadata.labels
   template:
     metadata:
       labels:
@@ -19,9 +21,10 @@ spec:
       containers:
       - name: multi-protocol-service
         image: containerservice.azurecr.io/multi-protocol-service:latest
+        imagePullPolicy: IfNotPresent  # Явное указание политики pull
         ports:
         - containerPort: 80
         - containerPort: 443
         - containerPort: 8080
       imagePullSecrets:
-      - name: my-secret  
+      - name: my-secret

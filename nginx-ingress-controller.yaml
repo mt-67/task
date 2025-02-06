@@ -30,7 +30,7 @@ spec:
             - containerPort: 443
               name: https  
           env:
-            - name: POD_NAMESPACE
+            - name: Default 
               valueFrom:
                 fieldRef:
                   fieldPath: metadata.namespace
